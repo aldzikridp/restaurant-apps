@@ -1,13 +1,14 @@
-import drawerEvent from './drawer.js';
-import renderResto from './render.js';
+import drawerEvent from './drawer';
+import renderRestoList from './render/renderRestoList';
+import RestaurantApi from './data/data';
 
-const data = require('./../DATA.json');
-const renderAllResto = () => {
-    console.log(data);
-    renderResto(data);
+const renderAllResto = async () => {
+  const restoList = await RestaurantApi.getRestaurantList();
+  renderRestoList(restoList);
 };
+
 const main = () => {
-    drawerEvent();
-    renderAllResto();
-}
-document.addEventListener("DOMContentLoaded", main);
+  drawerEvent();
+  renderAllResto();
+};
+document.addEventListener('DOMContentLoaded', main);
